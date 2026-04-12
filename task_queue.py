@@ -1,9 +1,12 @@
 import redis
 import json
 import uuid
+import os
 from datetime import datetime
 
-r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+# Read host from environment variable (Docker sets this to 'redis', local is 'localhost')
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+r = redis.Redis(host=REDIS_HOST, port=6379, decode_responses=True)
 
 def push_task(task_type: str, payload: dict, priority: int = 1, retries: int = 0):
     """Add a task to the queue — priority 2 = high, priority 1 = normal"""
