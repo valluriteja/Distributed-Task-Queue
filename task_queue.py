@@ -76,3 +76,4 @@ def push_to_dead_letter(task):
     r.lpush("dead_letter_queue", json.dumps(task))
     update_task_status(task["id"], "failed")
     print(f"💀 Task in dead letter queue: {task['id']}")
+
