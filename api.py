@@ -5,7 +5,6 @@ from task_queue import push_task, get_task_status, r
 import json
 
 app = FastAPI(title="Task Queue API")
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
